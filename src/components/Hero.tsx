@@ -1,9 +1,10 @@
 import { Mail, Phone, MapPin, Linkedin, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import profilePhoto from "@/assets/profile-photo.jpeg";
 
 const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
       {/* Background gradient effects */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5" />
       <div className="absolute top-1/4 -left-32 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
@@ -11,6 +12,22 @@ const Hero = () => {
       
       <div className="container mx-auto px-6 py-20 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
+          {/* Profile Photo */}
+          <div className="mb-8 flex justify-center">
+            <div className="relative">
+              <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-accent/30 shadow-glow">
+                <img 
+                  src={profilePhoto} 
+                  alt="Bhavesh Nishad" 
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div className="absolute -bottom-2 -right-2 w-12 h-12 rounded-full bg-accent flex items-center justify-center">
+                <span className="text-xl">👨‍💻</span>
+              </div>
+            </div>
+          </div>
+          
           <div className="inline-block mb-6 px-4 py-2 rounded-full bg-accent/10 border border-accent/20">
             <span className="text-accent text-sm font-medium">Available for opportunities</span>
           </div>
