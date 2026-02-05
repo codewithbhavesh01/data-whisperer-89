@@ -19,7 +19,7 @@ const Hero = () => {
                 <img 
                   src={profilePhoto} 
                   alt="Bhavesh Nishad" 
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
               <div className="absolute -bottom-2 -right-2 w-12 h-12 rounded-full bg-accent flex items-center justify-center">
