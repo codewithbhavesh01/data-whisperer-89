@@ -72,7 +72,7 @@ const Hero3D = () => {
                   <img 
                     src={profilePhoto} 
                     alt="Bhavesh Nishad" 
-                    className="w-full h-full object-cover object-[center_30%]"
+                    className="w-full h-full object-cover object-[center_15%]"
                   />
                 </div>
                 <motion.div 
