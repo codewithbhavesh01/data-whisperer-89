@@ -54,7 +54,7 @@ const Contact = () => {
           </div>
           
           <div className="mt-8 text-center">
-            <Button variant="hero" size="lg" asChild>
+            <Button size="lg" asChild>
               <a href="mailto:bhaveshkumar272175@gmail.com">
                 <Send className="w-4 h-4 mr-2" />
                 Send Message

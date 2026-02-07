@@ -1,126 +1,91 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { CreditCard, Building2, UtensilsCrossed, ExternalLink, ChevronRight } from "lucide-react";
+import { useRef } from "react";
+import { Database, Cloud, ChartBar } from "lucide-react";
 
 const projects = [
   {
-    title: "Credit Card Fraud Detection",
-    description: "Fraud detection using transaction data with advanced ML techniques",
-    icon: CreditCard,
-    gradient: "from-red-500 via-orange-500 to-yellow-500",
-    highlights: [
-      "Fraud detection using transaction data",
-      "Handled class imbalance effectively",
-      "Metrics: Precision, Recall, F1-score, ROC-AUC"
-    ],
-    tools: ["Python", "Pandas", "Machine Learning"]
+    title: "UIDAI Demographic Intelligence Platform",
+    icon: Database,
+    problem: "Analyzing large-scale demographic data for pattern discovery and decision-making insights.",
+    tools: ["Python", "Pandas", "NumPy", "Scikit-learn", "Matplotlib"],
+    approach: "Applied machine learning techniques for pattern and trend discovery in demographic datasets.",
+    outcomes: [
+      "Large-scale demographic data analysis",
+      "Pattern & trend discovery using ML",
+      "Insight generation for decision-making",
+      "Interactive visualization dashboards"
+    ]
   },
   {
-    title: "Loan Approval Prediction",
-    description: "Predict loan approval outcomes with high accuracy",
-    icon: Building2,
-    gradient: "from-green-500 via-emerald-500 to-teal-500",
-    highlights: [
-      "Predict loan approval outcomes",
-      "Identified key factors via EDA",
-      "Improved accuracy using feature engineering"
-    ],
-    tools: ["Python", "Machine Learning"]
-  },
-  {
-    title: "Restaurant Data Analysis",
-    description: "Comprehensive analysis of restaurant performance metrics",
-    icon: UtensilsCrossed,
-    gradient: "from-purple-500 via-pink-500 to-rose-500",
-    highlights: [
-      "Analyzed ratings, pricing, and preferences",
-      "Visualized trends and performance",
-      "Location-wise insights"
-    ],
-    tools: ["Python", "Pandas", "NumPy", "Matplotlib"]
+    title: "Weather Forecast Prediction System",
+    icon: Cloud,
+    problem: "Predicting weather conditions using historical data and time-series analysis.",
+    tools: ["Python", "Pandas", "Scikit-learn", "Matplotlib", "Seaborn"],
+    approach: "Built regression and time-series models to predict weather patterns from historical data.",
+    outcomes: [
+      "Historical weather data analysis",
+      "Regression & time-series models",
+      "Prediction visualization",
+      "Python-based ML solution"
+    ]
   }
 ];
 
 const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: number }) => {
-  const [isHovered, setIsHovered] = useState(false);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
   
   return (
     <motion.div
-      initial={{ opacity: 0, y: 60 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.7, delay: index * 0.15 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="perspective-1000 group"
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.2 }}
+      className="bg-card rounded-2xl overflow-hidden card-shadow hover:card-shadow-hover transition-all duration-300"
     >
-      <motion.div
-        animate={{
-          rotateX: isHovered ? 8 : 0,
-          rotateY: isHovered ? -8 : 0,
-          scale: isHovered ? 1.03 : 1,
-        }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
-        className="preserve-3d relative"
-      >
-        {/* Glow effect */}
-        <div className={`absolute -inset-1 bg-gradient-to-r ${project.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500`} />
-        
-        <div className="relative glass-card rounded-2xl overflow-hidden shadow-3d group-hover:shadow-3d-hover transition-all duration-500">
-          {/* Header with gradient */}
-          <div className={`h-2 bg-gradient-to-r ${project.gradient}`} />
-          
-          <div className="p-8">
-            <div className="flex items-start justify-between mb-6">
-              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${project.gradient} flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300`}>
-                <project.icon className="w-8 h-8 text-white" />
-              </div>
-              <motion.div
-                animate={{ x: isHovered ? 5 : 0 }}
-                className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-              >
-                <ExternalLink className="w-5 h-5 text-primary" />
-              </motion.div>
-            </div>
-
-            <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-              {project.title}
-            </h3>
-            
-            <p className="text-muted-foreground mb-6">
-              {project.description}
-            </p>
-
-            <ul className="space-y-3 mb-6">
-              {project.highlights.map((highlight, idx) => (
-                <motion.li
-                  key={idx}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.3 + idx * 0.1 }}
-                  className="flex items-start gap-2 text-sm text-muted-foreground"
-                >
-                  <ChevronRight className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                  <span>{highlight}</span>
-                </motion.li>
-              ))}
-            </ul>
-
-            <div className="flex flex-wrap gap-2">
-              {project.tools.map((tool) => (
-                <span
-                  key={tool}
-                  className="px-3 py-1.5 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20"
-                >
-                  {tool}
-                </span>
-              ))}
-            </div>
+      <div className="p-8">
+        <div className="flex items-start gap-4 mb-6">
+          <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+            <project.icon className="w-7 h-7 text-primary" />
+          </div>
+          <div>
+            <h3 className="text-xl font-bold text-foreground mb-2">{project.title}</h3>
+            <p className="text-sm text-muted-foreground">{project.problem}</p>
           </div>
         </div>
-      </motion.div>
+
+        <div className="mb-6">
+          <h4 className="text-sm font-semibold text-foreground mb-2">Approach:</h4>
+          <p className="text-muted-foreground text-sm">{project.approach}</p>
+        </div>
+
+        <div className="mb-6">
+          <h4 className="text-sm font-semibold text-foreground mb-3">Key Outcomes:</h4>
+          <ul className="space-y-2">
+            {project.outcomes.map((outcome, idx) => (
+              <li key={idx} className="flex items-center gap-2 text-sm text-muted-foreground">
+                <ChartBar className="w-4 h-4 text-primary flex-shrink-0" />
+                {outcome}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="text-sm font-semibold text-foreground mb-3">Tools Used:</h4>
+          <div className="flex flex-wrap gap-2">
+            {project.tools.map((tool) => (
+              <span
+                key={tool}
+                className="px-3 py-1 bg-secondary text-foreground text-xs font-medium rounded-full"
+              >
+                {tool}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
     </motion.div>
   );
 };
@@ -130,26 +95,23 @@ const Projects3D = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="projects" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-mesh opacity-40" />
-      <div className="absolute inset-0 bg-dot-pattern opacity-10" />
-      
-      <div className="container mx-auto px-6 relative z-10" ref={ref}>
+    <section id="projects" className="section-padding bg-secondary/30">
+      <div className="container mx-auto px-6" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient">Featured Projects</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+            Featured <span className="text-primary">Projects</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Real-world data science projects showcasing analytical and ML skills
+            Real-world data science projects showcasing my skills and experience
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {projects.map((project, index) => (
             <ProjectCard key={project.title} project={project} index={index} />
           ))}
