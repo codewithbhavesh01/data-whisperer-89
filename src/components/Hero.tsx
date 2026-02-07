@@ -62,10 +62,10 @@ const Hero = () => {
           </div>
           
           <div className="flex items-center justify-center gap-4">
-            <Button variant="hero" size="lg" asChild>
+            <Button size="lg" asChild>
               <a href="#projects">View Projects</a>
             </Button>
-            <Button variant="heroOutline" size="lg" asChild>
+            <Button variant="outline" size="lg" asChild>
               <a href="#contact">Get in Touch</a>
             </Button>
           </div>

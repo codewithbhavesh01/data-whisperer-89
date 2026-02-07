@@ -1,98 +1,102 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { MapPin, Mail, Phone, User } from "lucide-react";
+import { MapPin, Mail, Phone, FileText, GraduationCap, Briefcase, Zap } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const RESUME_URL = "https://drive.google.com/file/d/1JFS-v8o6UpCeD8P2iCH9hyNIbXOaQXgs/view";
+
+const highlights = [
+  { icon: GraduationCap, text: "B.Tech CS/IT (2022-2026)" },
+  { icon: Briefcase, text: "6 Months Internship Experience" },
+  { icon: Zap, text: "Strong in Python, ML, DL, NLP" },
+];
 
 const About3D = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const contactInfo = [
-    { icon: MapPin, label: "Location", value: "India" },
-    { icon: Mail, label: "Email", value: "bhaveshkumar272175@gmail.com", href: "mailto:bhaveshkumar272175@gmail.com" },
-    { icon: Phone, label: "Phone", value: "+91 7985407868", href: "tel:+917985407868" },
-  ];
-
   return (
-    <section id="about" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-mesh opacity-50" />
-      
-      <div className="container mx-auto px-6 relative z-10" ref={ref}>
+    <section id="about" className="section-padding bg-secondary/30">
+      <div className="container mx-auto px-6" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient">About Me</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+            About <span className="text-primary">Me</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Passionate about transforming data into actionable insights
+            Get to know more about my background and experience
           </p>
         </motion.div>
 
         <div className="max-w-4xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 50, rotateX: -10 }}
-            animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="perspective-1000"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-card rounded-2xl p-8 md:p-10 card-shadow"
           >
-            <div className="glass-card rounded-3xl p-8 md:p-12 shadow-3d hover:shadow-3d-hover transition-all duration-500">
-              <div className="flex items-start gap-6 mb-8">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-glow flex-shrink-0">
-                  <User className="w-8 h-8 text-primary-foreground" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-foreground mb-2">Data Scientist</h3>
-                  <p className="text-primary font-medium">Building the future with data</p>
-                </div>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+              I am a <strong className="text-foreground">B.Tech Computer Science/IT student</strong> (2022-2026) 
+              with a strong foundation in data science and machine learning. With{" "}
+              <strong className="text-foreground">6 months of hands-on experience</strong> as a Data Scientist Intern, 
+              I specialize in building predictive models and extracting meaningful insights from complex datasets.
+            </p>
+
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+              I am proficient in <strong className="text-foreground">Python, Machine Learning, Deep Learning, and NLP</strong>, 
+              with practical experience working on real-world datasets. I am a fast learner with a 
+              leadership mindset, always eager to tackle challenging problems and deliver data-driven solutions.
+            </p>
+
+            {/* Highlights */}
+            <div className="grid md:grid-cols-3 gap-4 mb-8">
+              {highlights.map((item, index) => (
+                <motion.div
+                  key={item.text}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                  className="flex items-center gap-3 p-4 bg-secondary/50 rounded-xl"
+                >
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <item.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <span className="text-sm font-medium text-foreground">{item.text}</span>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Contact Info */}
+            <div className="flex flex-wrap gap-6 mb-8 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-primary" />
+                <span>India</span>
               </div>
-
-              <p className="text-lg text-muted-foreground leading-relaxed mb-10">
-                I am a Data Scientist with hands-on experience in data analysis, statistics, and machine learning. 
-                I work with real-world datasets to extract insights and build predictive models that support 
-                data-driven decision making. My passion lies in solving complex business problems through 
-                innovative data solutions.
-              </p>
-
-              <div className="grid md:grid-cols-3 gap-4">
-                {contactInfo.map((info, index) => (
-                  <motion.div
-                    key={info.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                  >
-                    {info.href ? (
-                      <a
-                        href={info.href}
-                        className="flex items-center gap-3 p-4 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors group"
-                      >
-                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                          <info.icon className="w-5 h-5 text-primary" />
-                        </div>
-                        <div>
-                          <p className="text-xs text-muted-foreground">{info.label}</p>
-                          <p className="text-sm font-medium text-foreground truncate">{info.value}</p>
-                        </div>
-                      </a>
-                    ) : (
-                      <div className="flex items-center gap-3 p-4 rounded-xl bg-secondary/50">
-                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                          <info.icon className="w-5 h-5 text-primary" />
-                        </div>
-                        <div>
-                          <p className="text-xs text-muted-foreground">{info.label}</p>
-                          <p className="text-sm font-medium text-foreground">{info.value}</p>
-                        </div>
-                      </div>
-                    )}
-                  </motion.div>
-                ))}
+              <div className="flex items-center gap-2">
+                <Mail className="w-4 h-4 text-primary" />
+                <a href="mailto:bhaveshkumar272175@gmail.com" className="hover:text-primary transition-colors">
+                  bhaveshkumar272175@gmail.com
+                </a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4 text-primary" />
+                <a href="tel:+917985407868" className="hover:text-primary transition-colors">
+                  +91 7985407868
+                </a>
               </div>
             </div>
+
+            <Button asChild>
+              <a href={RESUME_URL} target="_blank" rel="noopener noreferrer">
+                <FileText className="w-4 h-4 mr-2" />
+                View Resume
+              </a>
+            </Button>
           </motion.div>
         </div>
       </div>

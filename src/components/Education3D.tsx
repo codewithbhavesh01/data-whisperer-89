@@ -1,91 +1,91 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { GraduationCap, BookOpen } from "lucide-react";
-
-const coursework = [
-  "Python Programming",
-  "Data Structures",
-  "DBMS",
-  "Operating Systems",
-  "Machine Learning Fundamentals"
-];
+import { GraduationCap, Building, Calendar, MapPin } from "lucide-react";
 
 const Education3D = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="education" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-dot-pattern opacity-15" />
-      <div className="absolute top-1/2 left-0 w-72 h-72 bg-primary/10 rounded-full blur-3xl -translate-y-1/2" />
-      
-      <div className="container mx-auto px-6 relative z-10" ref={ref}>
+    <section id="education" className="section-padding bg-secondary/30">
+      <div className="container mx-auto px-6" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient">Education</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+            <span className="text-primary">Education</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Academic background and relevant coursework
+            Academic background and qualifications
           </p>
         </motion.div>
 
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto space-y-6">
+          {/* Main Education */}
           <motion.div
-            initial={{ opacity: 0, y: 50, rotateX: -10 }}
-            animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            whileHover={{ scale: 1.02, rotateY: 3 }}
-            className="perspective-1000"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-card rounded-2xl p-8 card-shadow"
           >
-            <div className="glass-card rounded-3xl p-8 md:p-10 shadow-3d hover:shadow-3d-hover transition-all duration-500">
-              <div className="flex flex-col md:flex-row items-start gap-6 mb-8">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={isInView ? { scale: 1 } : {}}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                  className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-glow flex-shrink-0"
-                >
-                  <GraduationCap className="w-10 h-10 text-primary-foreground" />
-                </motion.div>
+            <div className="flex flex-col md:flex-row items-start gap-6">
+              <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                <GraduationCap className="w-8 h-8 text-primary" />
+              </div>
+              
+              <div className="flex-1">
+                <h3 className="text-xl font-bold text-foreground mb-2">
+                  Bachelor of Technology (B.Tech)
+                </h3>
+                <p className="text-lg text-primary font-semibold mb-3">
+                  Computer Science / Information Technology
+                </p>
                 
-                <div>
-                  <h3 className="text-2xl font-bold text-foreground mb-2">
-                    Bachelor of Technology (B.Tech)
-                  </h3>
-                  <p className="text-xl text-primary font-semibold mb-2">
-                    Computer Science / Information Technology
-                  </p>
-                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20">
-                    <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-                    <span className="text-sm font-medium text-accent">Currently Pursuing</span>
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Building className="w-4 h-4" />
+                    <span>Himalayan Institute of Technology and Management</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Calendar className="w-4 h-4" />
+                    <span>2022 – 2026</span>
                   </div>
                 </div>
-              </div>
 
-              <div className="bg-secondary/30 rounded-2xl p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <BookOpen className="w-5 h-5 text-primary" />
-                  <h4 className="text-lg font-semibold text-foreground">Relevant Coursework</h4>
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+                  <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                  <span className="text-sm font-medium text-primary">Currently Pursuing</span>
                 </div>
-                
-                <div className="flex flex-wrap gap-3">
-                  {coursework.map((course, index) => (
-                    <motion.span
-                      key={course}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-                      className="px-4 py-2 rounded-xl bg-card text-foreground text-sm font-medium border border-border hover:border-primary/50 hover:bg-primary/5 transition-all cursor-default"
-                    >
-                      {course}
-                    </motion.span>
-                  ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* University Affiliation */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="bg-card rounded-2xl p-8 card-shadow"
+          >
+            <div className="flex flex-col md:flex-row items-start gap-6">
+              <div className="w-16 h-16 bg-secondary rounded-xl flex items-center justify-center flex-shrink-0">
+                <Building className="w-8 h-8 text-muted-foreground" />
+              </div>
+              
+              <div className="flex-1">
+                <h3 className="text-lg font-bold text-foreground mb-2">
+                  Affiliated to Dr. A.P.J. Abdul Kalam Technical University (AKTU)
+                </h3>
+                <p className="text-muted-foreground mb-2">
+                  Bachelor of Technology
+                </p>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <MapPin className="w-4 h-4" />
+                  <span>Lucknow, India</span>
                 </div>
               </div>
             </div>
