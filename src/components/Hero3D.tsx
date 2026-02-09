@@ -22,16 +22,9 @@ const Hero3D = () => {
                 <img 
                   src={profilePhoto} 
                   alt="Bhavesh Nishad" 
-                  className="w-full h-full object-cover object-[center_15%]"
+                  className="w-full h-full object-cover object-[center_5%]"
                 />
               </div>
-              <motion.div 
-                className="absolute -bottom-2 -right-2 w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-lg"
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <span className="text-xl">🧠</span>
-              </motion.div>
             </motion.div>
 
             {/* Content */}
